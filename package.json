@@ -1,0 +1,35 @@
+{
+  "name": "QueenBot",
+  "version": "1.0.0",
+  "description": "A bot that uses discord.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeydinNewWon/MyJSDiscordBot.git"
+  },
+  "author": "JeydinNewWon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeydinNewWon/MyJSDiscordBot/issues"
+  },
+  "homepage": "https://github.com/JeydinNewWon/MyJSDiscordBot#readme",
+  "dependencies": {
+    "bufferutil": "^3.0.3",
+    "cleverbot.io": "^1.0.4",
+    "discord.js": "^11.2.1",
+    "file-exists": "^5.0.1",
+    "jsonfile": "^4.0.0",
+    "libsodium-wrappers": "^0.5.4",
+    "node-opus": "^0.2.7",
+    "opusscript": "0.0.3",
+    "titlecase": "^1.1.2",
+    "uws": "^0.14.5",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.5"
+  }
+}
