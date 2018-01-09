@@ -67,13 +67,14 @@ function execute(msg) {
     } else {
         jsonfile.readFile(pathToQueen, (err, obj) => {
             var queenList = obj[args.toLowerCase()];
-            var queen = queenList[Math.floor(Math.random() * queenList.length)];
 
-            if (!queen) {
+            if (!queenList) {
                 msg.channel.send(`${fail} Requested queen was not found!`);
                 logger.warn(`${command}: Queen "${args}" was not found.`);
                 return;
             }
+
+            var queen = queenList[Math.floor(Math.random() * queenList.length)];
 
             var embed = new discord.RichEmbed()
                 .setColor('GREEN')
