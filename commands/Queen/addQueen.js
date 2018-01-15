@@ -81,7 +81,7 @@ function execute(msg) {
                         jsonfile.readFile(queenJsonPath, (err, obj) => {
                             var imgList = obj[queenName.toLowerCase()];
                             if (!imgList) {
-                                obj[queenName] = [url];
+                                obj[queenName.toLowerCase()] = [url];
                             } else {
                                 obj[queenName.toLowerCase()].push(url);
                             }
@@ -138,7 +138,7 @@ function execute(msg) {
                 jsonfile.readFile(queenJsonPath, (err, obj) => {
                     var imgList = obj[queenName.toLowerCase()];
                     if (!imgList) {
-                        obj[queenName] = [url];
+                        obj[queenName.toLowerCase()] = [url];
                     } else {
                         obj[queenName.toLowerCase()].push(url);
                     }
