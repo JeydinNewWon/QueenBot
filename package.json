@@ -1,6 +1,6 @@
 {
   "name": "QueenBot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A bot that uses discord.js",
   "main": "index.js",
   "scripts": {
@@ -13,9 +13,9 @@
   "author": "JeydinNewWon",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/JeydinNewWon/MyJSDiscordBot/issues"
+    "url": "https://github.com/JeydinNewWon/QueenBot/issues"
   },
-  "homepage": "https://github.com/JeydinNewWon/MyJSDiscordBot#readme",
+  "homepage": "https://github.com/JeydinNewWon/QueenBot#readme",
   "dependencies": {
     "bufferutil": "^3.0.3",
     "cleverbot.io": "^1.0.4",
