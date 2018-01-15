@@ -57,7 +57,7 @@ function checkCommand(msg) {
         var command = commands[commandName];
 
         if (!command) {
-            msg.reply(`${fail} Sorry, that command is invalid.`);
+            msg.channel.send(`${fail} Sorry, that command is invalid.`);
             return;
         }
 
@@ -83,4 +83,4 @@ module.exports = {
     "saveCommands": saveCommands,
     "checkCommand": checkCommand,
     "getModules": getModules
-}
+};
