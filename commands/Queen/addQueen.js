@@ -18,7 +18,6 @@
  * Created by JeydinNewWon on 05/01/18.
  */
 
-const discord = require('discord.js');
 const jsonfile = require('jsonfile');
 const path = require('path');
 const fileExists = require('file-exists');
@@ -30,14 +29,14 @@ const success = config.success_command_emoji;
 const fail = config.fail_command_emoji;
 const name = 'addqueen';
 const mod = 'Queen';
-const usage = `\`${commandPrefix}${name} [Queen Name] [URL of Image]\` OR \`${commandPrefix}${name} [Queen Name] [Image Attached to Message]\``;
+const command = `${commandPrefix}${name}`;
+const usage = `\`${command} [Queen Name] [URL of Image]\` OR \`${command} [Queen Name] [Image Attached to Message]\``;
 const description = "Adds a Queen to your server's Queen List.";
 
 function execute(msg) {
     var attachments = msg.attachments;
     var authorUserName = msg.author.username;
     var guildId = msg.guild.id;
-    var command = `${commandPrefix}${name}`;
     var queenJsonPath = path.join(__dirname, `../../data/queens/${guildId}.json`);
     var args = msg.content.split(' ');
     args.shift();
@@ -58,11 +57,13 @@ function execute(msg) {
                         logger.warn(`${command}: ${authorUserName} attached an invalid attachment.`);
                         return;
                     });
+
                 } else {
                     var queenServerJsonExists = fileExists.sync(queenJsonPath);
                     if (!queenServerJsonExists) {
                         var obj = {};
                         obj[queenName.toLowerCase()] = [url];
+
                         jsonfile.writeFile(queenJsonPath, obj, {
                             spaces: 4
                         }, (err) => {
@@ -75,16 +76,19 @@ function execute(msg) {
                         msg.channel.send(`${success} Successfully added **${titleCase(queenName)}**.`).then((message) => {
                             logger.info(`${command}: Added ${queenName.toLowerCase()} to ${queenJsonPath}.`);
                         });
+
                         return;
 
                     } else {
                         jsonfile.readFile(queenJsonPath, (err, obj) => {
                             var imgList = obj[queenName.toLowerCase()];
+
                             if (!imgList) {
                                 obj[queenName.toLowerCase()] = [url];
                             } else {
                                 obj[queenName.toLowerCase()].push(url);
                             }
+
                             jsonfile.writeFile(queenJsonPath, obj, {
                                 spaces: 4
                             }, (err) => {
@@ -93,10 +97,12 @@ function execute(msg) {
                                     return;
                                 }
                             });
+
                             msg.channel.send(`${success} Successfully added **${titleCase(queenName)}**.`).then((message) => {
                                 logger.info(`${command}: Added ${queenName.toLowerCase()} to ${queenJsonPath}.`);
                                 return;
                             });
+
                         });
                     }
                 }
@@ -122,6 +128,7 @@ function execute(msg) {
             if (!queenServerJsonExists) {
                 var obj = {};
                 obj[queenName.toLowerCase()] = [url];
+
                 jsonfile.writeFile(queenJsonPath, obj, {
                     spaces: 4
                 }, (err) => {
@@ -134,14 +141,17 @@ function execute(msg) {
                 msg.channel.send(`${success} Successfully added **${titleCase(queenName)}**.`).then((message) => {
                     logger.info(`${command}: Added ${queenName.toLowerCase()} to ${queenJsonPath}.`);
                 });
+
             } else {
                 jsonfile.readFile(queenJsonPath, (err, obj) => {
                     var imgList = obj[queenName.toLowerCase()];
+
                     if (!imgList) {
                         obj[queenName.toLowerCase()] = [url];
                     } else {
                         obj[queenName.toLowerCase()].push(url);
                     }
+
                     jsonfile.writeFile(queenJsonPath, obj, {
                         spaces: 4
                     }, (err) => {
@@ -150,10 +160,12 @@ function execute(msg) {
                             return;
                         }
                     });
+
                     msg.channel.send(`${success} Successfully added **${titleCase(queenName)}**.`).then((message) => {
                         logger.info(`${command}: Added ${queenName.toLowerCase()} to ${queenJsonPath}.`);
                         return;
                     });
+                    
                 });
             }
 
@@ -162,6 +174,7 @@ function execute(msg) {
                 logger.warn(`${command}: Incorrect number of arguments in server: ${guildId}`);
                 return;
             });
+
         }
 
     } else {
@@ -169,6 +182,7 @@ function execute(msg) {
             logger.warn(`${command}: No critical arguments given in server: ${guildId}`);
             return;
         });
+
     }
 }
 
@@ -178,4 +192,4 @@ module.exports = {
     "usage": usage,
     "description": description,
     "execute": execute
-}
+};
