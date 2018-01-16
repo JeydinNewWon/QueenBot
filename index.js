@@ -64,6 +64,6 @@ bot.on("message", (message) => {
 });
 
 bot.on("error", (error) => {
-    winston.error(`Bot encountered an error.\n${error.name}: ${error.prototype.message}`);
+    logger.error(`Bot encountered an error.\n${error.name}: ${error.prototype.message}`);
 });
 
