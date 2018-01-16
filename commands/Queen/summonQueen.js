@@ -52,7 +52,7 @@ function execute(msg) {
                 var tempImgList = obj[key];
 
                 if (tempImgList.length > 0) {
-                    objKeys.push(tempImgList);
+                    objKeys.push(key);
                 }
             });
 
@@ -67,7 +67,7 @@ function execute(msg) {
             var randomValue = randomList[Math.floor(Math.random() * randomList.length)];
 
             var embed = new discord.RichEmbed()
-                .setColor('GREEN')
+                .setColor('GOLD')
                 .setTitle(titleCase(randomKey))
                 .setImage(randomValue);
 
